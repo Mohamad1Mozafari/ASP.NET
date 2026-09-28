@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\MM\\Desktop\\RoshedTehran\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RoshedTehran.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.RoshedTehran.props",
+      "PackagePath": "build\\RoshedTehran.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.RoshedTehran.props",
+      "PackagePath": "buildMultiTargeting\\RoshedTehran.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.RoshedTehran.props",
+      "PackagePath": "buildTransitive\\RoshedTehran.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

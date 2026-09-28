@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>روشد تهران | جستجوی کسب‌وکار</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-2: #1f232c;
+    --border: #2a2f3a;
+    --text: #e8eaed;
+    --muted: #9aa1ad;
+    --accent: #4f8cff;
+    --accent-2: #34d399;
+    --danger: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Vazirmatn", Tahoma, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  header {
+    padding: 28px 24px 18px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { margin: 0 0 4px; font-size: 22px; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; }
+
+  .search-wrap {
+    max-width: 760px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    justify-content: center;
+  }
+  .tab {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all .15s;
+  }
+  .tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .search-box {
+    display: flex;
+    gap: 8px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 6px;
+  }
+  .search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+  .search-box button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0 22px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .search-box button:disabled { opacity: .6; cursor: default; }
+
+  .hint { color: var(--muted); font-size: 12px; margin: 10px 4px 0; }
+
+  .status {
+    max-width: 760px;
+    margin: 18px auto 0;
+    padding: 0 20px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+  .status.error { color: var(--danger); }
+
+  .results {
+    max-width: 820px;
+    margin: 22px auto 60px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .card-title { font-size: 15px; font-weight: 700; }
+  .card-title a { color: var(--accent); text-decoration: none; }
+  .card-title a:hover { text-decoration: underline; }
+  .score {
+    font-size: 11px;
+    color: var(--accent-2);
+    background: rgba(52,211,153,.12);
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .desc { color: var(--muted); font-size: 13px; line-height: 1.6; margin: 6px 0 10px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .chip {
+    font-size: 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: var(--text);
+  }
+  .chip.phone { border-color: rgba(79,140,255,.4); }
+  .chip.email { border-color: rgba(52,211,153,.4); }
+
+  .socials { display: flex; gap: 8px; flex-wrap: wrap; }
+  .social-link {
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  .social-link:hover { color: var(--text); border-color: var(--accent); }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 60px;
+  }
+
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-top-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin .7s linear infinite;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>روشد تهران</h1>
+  <p>جستجوی آنلاین (اسکن وب زنده) یا آفلاین (جستجوی معنایی در پایگاه‌داده) کسب‌وکارها</p>
+</header>
+
+<div class="search-wrap">
+  <div class="tabs">
+    <div class="tab active" data-mode="offline">جستجوی آفلاین (سریع)</div>
+    <div class="tab" data-mode="online">جستجوی آنلاین (زنده)</div>
+  </div>
+  <div class="search-box">
+    <input id="queryInput" type="text" placeholder="مثلاً: رستوران ایتالیایی در تهران" />
+    <button id="searchBtn">جستجو</button>
+  </div>
+  <div class="hint" id="modeHint">جستجو در داده‌های از پیش ذخیره‌شده، بر اساس شباهت معنایی.</div>
+</div>
+
+<div class="status" id="status"></div>
+<div class="results" id="results"></div>
+
+<script>
+  const API_BASE = "/api/v1/Search";
+  const input = document.getElementById("queryInput");
+  const btn = document.getElementById("searchBtn");
+  const statusEl = document.getElementById("status");
+  const resultsEl = document.getElementById("results");
+  const modeHint = document.getElementById("modeHint");
+  const tabs = document.querySelectorAll(".tab");
+
+  let mode = "offline";
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      mode = tab.dataset.mode;
+      modeHint.textContent = mode === "offline"
+        ? "جستجو در داده‌های از پیش ذخیره‌شده، بر اساس شباهت معنایی."
+        : "جستجوی زنده در وب با DuckDuckGo، استخراج اطلاعات تماس و ذخیره نتایج جدید.";
+    });
+  });
+
+  async function runSearch() {
+    const q = input.value.trim();
+    if (!q) return;
+
+    btn.disabled = true;
+    btn.innerHTML = 'در حال جستجو<span class="spinner"></span>';
+    statusEl.className = "status";
+    statusEl.textContent = "";
+    resultsEl.innerHTML = "";
+
+    try {
+      const url = `${API_BASE}/${mode}?query=${encodeURIComponent(q)}`;
+      const res = await fetch(url);
+
+      if (!res.ok) {
+        throw new Error(`سرور خطا داد (${res.status})`);
+      }
+
+      const data = await res.json();
+      render(data);
+    } catch (err) {
+      statusEl.className = "status error";
+      statusEl.textContent = "خطا: " + err.message + " — از روشن بودن بک‌اند و پایگاه‌داده مطمئن شوید.";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "جستجو";
+    }
+  }
+
+  function render(items) {
+    if (!items || items.length === 0) {
+      resultsEl.innerHTML = '<div class="empty">نتیجه‌ای پیدا نشد.</div>';
+      return;
+    }
+
+    resultsEl.innerHTML = items.map(item => {
+      const title = item.titleTag || item.domain || item.mainPageUrl || "بدون عنوان";
+      const link = item.mainPageUrl || item.contactPageUrl || "#";
+      const desc = item.description || "";
+      const score = (item.similarityScore ?? item.SimilarityScore);
+      const scoreHtml = (mode === "offline" && score) ? `<span class="score">${(score * 100).toFixed(1)}٪ شباهت</span>` : "";
+
+      const phones = (item.phoneNumber || []).map(p => `<span class="chip phone">📞 ${p}</span>`).join("");
+      const emails = (item.email || []).map(e => `<span class="chip email">✉️ ${e}</span>`).join("");
+
+      const socials = (item.socialLinks || []).map(s =>
+        `<a class="social-link" href="${s.url}" target="_blank" rel="noopener">${s.platform}</a>`
+      ).join("");
+
+      return `
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><a href="${link}" target="_blank" rel="noopener">${title}</a></div>
+            ${scoreHtml}
+          </div>
+          ${desc ? `<div class="desc">${desc}</div>` : ""}
+          <div class="chips">${phones}${emails}</div>
+          <div class="socials">${socials}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  btn.addEventListener("click", runSearch);
+  input.addEventListener("keydown", e => { if (e.key === "Enter") runSearch(); });
+</script>
+
+</body>
+</html>

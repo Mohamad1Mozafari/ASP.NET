@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "PMarIQglwf+D/N7jNoKm8rx6HxkDdc/EY+vpt/An3S0=",
+  "Source": "RoshedTehran",
+  "BasePath": "_content/RoshedTehran",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "RoshedTehran\\wwwroot",
+      "Source": "RoshedTehran",
+      "ContentRoot": "C:\\Users\\MM\\Desktop\\RoshedTehran\\wwwroot\\",
+      "BasePath": "_content/RoshedTehran",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\MM\\Desktop\\RoshedTehran\\wwwroot\\index.html",
+      "SourceId": "RoshedTehran",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MM\\Desktop\\RoshedTehran\\wwwroot\\",
+      "BasePath": "_content/RoshedTehran",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}
